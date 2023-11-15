@@ -19,22 +19,37 @@ st.write("Let create our custom model. We have two options, one to create an ANN
 
 st.header("Set the config of the models")
 
-with st.container():
-    st.subheader("Set the config of ANN Model")
+# with st.container():
+#     st.subheader("Set the config of ANN Model")
 
-    dropout = st.slider("dropout", 0.,1.,value=0.5,step=0.1,key="dropout")
-    # hiddenLayers = st.slider("No.of Hidden Layers", 1,5,step=1,value=1)
+#     dropout = st.slider("dropout", 0.,1.,value=0.5,step=0.1,key="dropout")
+#     # hiddenLayers = st.slider("No.of Hidden Layers", 1,5,step=1,value=1)
+#     hiddenLayers = st.slider("no.of hidden layers",1,5,step=1,value=1)
+#     st.write("Choose the number of nodes in each hidden layer: ")
+#     sliderInputs = [0 for i in range(hiddenLayers)]
+#     for i in range(hiddenLayers):
+#         sliderInputs[i] = st.slider("Choose numer of nodes",100,500,step=50,value=100,key="h"+str(i))
+#     st.session_state["hidden_layers"] = sliderInputs
+
+#     if "dropout" not in st.session_state:
+#         st.session_state["dropout"] = dropout
+#     if "hidden_layers" not in st.session_state:
+#         st.session_state["hidden_layers"] = sliderInputs
+with st.container():
+    st.write("set the config of ANN Model")
+    dropout = st.slider("dropout",0.,1.,value=0.5,step=0.1,key="dropout")
     hiddenLayers = st.slider("no.of hidden layers",1,5,step=1,value=1)
-    st.write("Choose the number of nodes in each hidden layer: ")
+    st.write("below you can choose the number of nodes in each hidden layer: ")
     sliderInputs = [0 for i in range(hiddenLayers)]
     for i in range(hiddenLayers):
-        sliderInputs[i] = st.slider("Choose numer of nodes",100,500,step=50,value=100,key="h"+str(i))
+        sliderInputs[i] = st.slider("choose numer of nodes",100,500,step=50,value=100,key="h"+str(i))
     st.session_state["hidden_layers"] = sliderInputs
 
     if "dropout" not in st.session_state:
         st.session_state["dropout"] = dropout
     if "hidden_layers" not in st.session_state:
         st.session_state["hidden_layers"] = sliderInputs
+
 
 with st.container():
     st.subheader("Set the config for CNN Model")
