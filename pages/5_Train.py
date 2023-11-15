@@ -54,19 +54,19 @@ if st.button("TRAIN MODEL"):
     if "split_ratio" not in st.session_state or  "total_samples" not in st.session_state or "created" not in st.session_state:
         st.error("First set the dataset from dataset page, and then create the model")
     else:
-        with st.spinner("Loading training data..."):
-            mnist = utility.Load_mnistData()
-
-        X = mnist.data.astype('float32')
-        y = mnist.target.astype('int64')
-
-        X = X/255.
-
-        file_features = "mnist_features.npy"
-        file_target = "mnist_target.npy"
-
-        features = np.load(file_features).astype(np.float32)
-        target = np.load(file_target).astype(np.int64)
+        if "features" not in st.session_state:  
+            with st.spinner("Loading training data..."):
+                mnist = utility.Load_mnistData()
+    
+                X = mnist.data.astype('float32')
+                y = mnist.target.astype('int64')
+    
+                X = X/255.
+                features = X.astype(np.float32)
+                st.session_state["features"] = features
+                target = y.astype(np.int64)
+                st.session_state["target"] = target
+                
 
 
         split_ratio = st.session_state["split_ratio"]
