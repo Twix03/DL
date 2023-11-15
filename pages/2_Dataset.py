@@ -45,17 +45,21 @@ st.write("To Visualize the data present in the dataset. Use the slider below to 
 samples = st.slider(label = "SAMPLE SIZE", min_value=10, max_value=100, value=20, step=10)
 
 if st.button("Visualize Data"):
-    file_features = "mnist_features.npy"
-    file_target = "mnist_target.npy"
+    mnist = fetch_openml('mnist_784', as_frame=False, cache=False)
+    X = mnist.data.astype('float32')
+    y = mnist.target.astype('int64')
+    X /= 255.0
+    # file_features = "mnist_features.npy"
+    # file_target = "mnist_target.npy"
     if "features" not in st.session_state:
-        features = np.load(file_features).astype(np.float32)
+        features = X.astype(np.float32)
         st.session_state["features"] = features
 
     else:
         features = st.session_state["features"]
     
     if "target" not in st.session_state:
-        target = np.load(file_target).astype(np.int64)
+        target = y
         st.session_state["target"] = target
 
     else:
@@ -88,68 +92,3 @@ if "total_samples" not in st.session_state:
 
 if "split_ratio" not in st.session_state:
     st.session_state["split_ratio"] = split_ratio
-
-
-# if "total_samples" not in st.session_state:
-#     st.session_state["total_samples"] = total_samples
-# st.session_state["total_samples"] = total_samples
-# st.session_state["split_ratio"] = split_ratio
-
-
-# if "sample_size" not in st.session_state:
-#     sample_size = 50
-# else:
-#     sample_size = st.session_state["sample_size"]
-
-# sample_size = st.slider(label= "Data Samples", min_value=1, max_value=100, value = sample_size, step=1)
-
-
-
-# if "split_ratio" not in st.session_state:
-#     split_ratio = 0.25
-#     st.session_state["split_ratio"] = split_ratio
-# else:
-#     split_ratio = st.session_state["split_ratio"]
-
-# split_ratio = st.slider(label= "Split Ratio", min_value=0.01, max_value=0.99, value = split_ratio, step=0.01)
-
-
-# TODO: This needs to be removed and put in the train file:
-# Only collect the sizes here
-# if st.button("Generate Data"):
-
-#     file_features = "mnist_features.npy"
-#     file_target = "mnist_target.npy"
-#     if "features" not in st.session_state:
-#         features = np.load(file_features).astype(np.float32)
-#         st.session_state["features"] = features
-
-#     else:
-#         features = st.session_state["features"]
-    
-#     if "target" not in st.session_state:
-#         target = np.load(file_target).astype(np.int64)
-#         st.session_state["target"] = target
-
-#     else:
-#         target = st.session_state["target"]
-
-
-#     split_ratio = st.session_state["split_ratio"]
-#     X_train, X_test, y_train, y_test = train_test_split(features, target, test_size = split_ratio, random_state=42)
-    
-#     if "X_train" not in st.session_state:
-#         st.session_state["X_train"] = X_train
-#         st.session_state["y_train"] = y_train
-#         st.session_state["X_test"] = X_test
-#         st.session_state["y_test"] = y_test
-
-#     else:
-#         X_train = st.session_state["X_train"]
-#         X_test = st.session_state["X_test"]
-#         y_train = st.session_state["y_train"]
-#         y_test = st.session_state["y_test"]
-
-#     st.write(X_train.shape, y_train.shape)
-#     st.write(X_test.shape, y_test.shape)
-    
