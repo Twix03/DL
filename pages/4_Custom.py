@@ -26,13 +26,13 @@ st.write("Let create our custom model. We have two options, one to create an ANN
 # samples = st.slider(label = "NO. OF SAMPLES", min_value=10, max_value=100, value=20, step=10)
 
 
-st.write("## Set the config of the models")
+st.header("Set the config of the models")
 
 with st.container():
-    st.write("# Set the config of ANN Model")
+    st.subheader(" Set the config of ANN Model")
     st.label("Dropout")
     dropout = st.slider(0.,1.,value=0.5,step=0.1,key="dropout")
-    st.label("no.of hidden layers")
+    st.label("No.of hidden layers")
     hiddenLayers = st.slider(1,5,step=1,value=1)
     st.label("Choose the number of nodes in each hidden layer: ")
     sliderInputs = [0 for i in range(hiddenLayers)]
@@ -46,7 +46,7 @@ with st.container():
         st.session_state["hidden_layers"] = sliderInputs
 
 with st.container():
-    st.write("# Set the config for CNN Model")
+    st.subheader("Set the config for CNN Model")
     st.write("** Choose your function **")
     activation = st.radio("Activation",options=['ReLU','Tanh','Sigmoid'],index=0,key="activation")        
     st.write("**Choose the number of convolution layers in the model**")
