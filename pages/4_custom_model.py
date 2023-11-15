@@ -5,7 +5,7 @@ import utility
 from skorch import NeuralNetClassifier
 
 
-st.set_page_config(page_title="Model", page_icon=":shark:", layout="wide")
+st.set_page_config(page_title="Model", page_icon=":globe:", layout="wide")
 st.title("Build Your Own Model")
 
 for k in st.session_state:
@@ -44,7 +44,7 @@ with st.container():
         st.session_state["hidden_layers"] = sliderInputs
 
 with st.container():
-    st.write("set the config for CNN Model")
+    st.write("##set the config for CNN Model")
     st.write("**choose your function**")
     activation = st.radio("activation",options=['ReLU','Tanh','Sigmoid'],index=0,key="activation")        
     st.write("**Choose the number of convolution layers in the model**")
