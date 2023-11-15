@@ -5,7 +5,7 @@ import utility
 from skorch import NeuralNetClassifier
 
 
-st.set_page_config(page_title="Model", page_icon=":globe:", layout="wide")
+st.set_page_config(page_title="Model", page_icon=":shark:", layout="wide")
 st.title("Build Your Own Model")
 
 for k in st.session_state:
@@ -29,7 +29,7 @@ st.write("Let create our custom model. We have two options, one to create an ANN
 st.write("## Set the config of the models")
 
 with st.container():
-    st.write("set the config of ANN Model")
+    st.write("## Set the config of ANN Model")
     dropout = st.slider("dropout",0.,1.,value=0.5,step=0.1,key="dropout")
     hiddenLayers = st.slider("no.of hidden layers",1,5,step=1,value=1)
     st.write("below you can choose the number of nodes in each hidden layer: ")
@@ -44,9 +44,9 @@ with st.container():
         st.session_state["hidden_layers"] = sliderInputs
 
 with st.container():
-    st.write("##set the config for CNN Model")
-    st.write("**choose your function**")
-    activation = st.radio("activation",options=['ReLU','Tanh','Sigmoid'],index=0,key="activation")        
+    st.write("## Set the config for CNN Model")
+    st.write("** Choose your function **")
+    activation = st.radio("Activation",options=['ReLU','Tanh','Sigmoid'],index=0,key="activation")        
     st.write("**Choose the number of convolution layers in the model**")
     layers = st.slider("no.of layers",1,10,value=5,key="depth")
 
