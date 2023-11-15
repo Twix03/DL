@@ -42,7 +42,7 @@ with st.container():
     st.write("BELOW YOU CAN CHOOSE THE NUMBER OF NODES IN EACH HIDDEN LAYER: ")
     sliderInputs = [0 for i in range(hiddenLayers)]
     for i in range(hiddenLayers):
-        sliderInputs[i] = st.slider("CHOOSE NO. OF NODES",100,500,step=50,value=100,key="h"+str(i))
+        sliderInputs[i] = st.slider("NO. OF NODES",100,500,step=50,value=100,key="h"+str(i))
     st.session_state["hidden_layers"] = sliderInputs
 
     if "dropout" not in st.session_state:
@@ -54,8 +54,7 @@ with st.container():
 with st.container():
     st.subheader("Set the config for CNN Model")
     activation = st.radio("ACTIVATION FUNCTION",options=['ReLU','Tanh','Sigmoid'],index=0,key="activation")        
-    st.write("CHOOSE NO. OF CONVOLUTION LAYERS IN THE MODEL")
-    layers = st.slider("NO. OF LAYERS",1,10,value=5,key="depth")
+    layers = st.slider("NO. OF CONVOLUTION LAYERS",1,10,value=5,key="depth")
 
     if "activation" not in st.session_state:
         st.session_state["activation"] = activation
@@ -70,7 +69,7 @@ def customModels(modelType):
     else: return utility.CreateModelWithDepth(1,st.session_state["activation"],st.session_state["depth"])
 
 with st.container():
-    st.write("## create your model by changing config and then click on train model")
+    st.write("## Create your Model by changing Config and then Click on Train Model")
     customSelection = st.radio("SELECT MODEL",options=["ANN","CNN"],index=0,key="customModelType",horizontal=True)
     if st.button("create Model"):
         customModel = customModels(customSelection)
