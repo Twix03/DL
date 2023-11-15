@@ -60,8 +60,8 @@ if st.button("TRAIN MODEL"):
     
                 X = mnist.data.astype('float32')
                 y = mnist.target.astype('int64')
-    
                 X = X/255.
+                
                 features = X.astype(np.float32)
                 st.session_state["features"] = features
                 target = y.astype(np.int64)
@@ -72,17 +72,16 @@ if st.button("TRAIN MODEL"):
         split_ratio = st.session_state["split_ratio"]
         totalLen = st.session_state["total_samples"]
 
-        Xsim,Xcus = X,X
+        Xsim,Xcus = features,features
         if st.session_state["simpleModelType"] == "CNN":
-            # features = features[1]
-            Xsim = X.reshape(-1, 1, 28, 28)
+            Xsim = features.reshape(-1, 1, 28, 28)
             print(Xsim.shape)
-            print(y.shape)
+            print(target.shape)
 
         if st.session_state["customModelType"] == "CNN":
-            Xcus = X.reshape(-1, 1, 28, 28)
+            Xcus = features.reshape(-1, 1, 28, 28)
             print(Xcus.shape)
-            print(y.shape)
+            print(target.shape)
 
         Xsim_train, Xsim_test, y_train, y_test = train_test_split(Xsim[:totalLen], y[:totalLen], train_size = split_ratio/100, random_state=42)
         Xcus_train, Xcus_test, y_train, y_test = train_test_split(Xcus[:totalLen], y[:totalLen], train_size = split_ratio/100, random_state=42)
@@ -99,7 +98,7 @@ if st.button("TRAIN MODEL"):
 
         st.write(Xsim_train.shape, y_train.shape)
         st.write(Xsim_test.shape, y_test.shape)
-        # net = utility.train(net, learning_rate, epochs, X_train, y_train)
+
         with st.spinner("training model..."):
             simnet.fit(Xsim_train,y_train)
             st.write("st: ",st.session_state["hidden_layers"])
@@ -110,74 +109,3 @@ if st.button("TRAIN MODEL"):
             st.session_state["Xsim_test"] = Xsim_test
             st.session_state["Xcus_test"] = Xcus_test
             st.session_state["y_test"] = y_test
-        
-# st.write("##")
-
-# st.write("""
-#          ## Train - Test Split 
-#         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. 
-#          Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. 
-#          Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. 
-#          Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. 
-#          """)
-
-# st.write("##")
-
-
-# if "sample_size" not in st.session_state:
-#     sample_size = 50
-# else:
-#     sample_size = st.session_state["sample_size"]
-
-# sample_size = st.slider(label= "Data Samples", min_value=1, max_value=100, value = sample_size, step=1)
-
-
-
-# if "split_ratio" not in st.session_state:
-#     split_ratio = 0.25
-# else:
-#     split_ratio = st.session_state["split_ratio"]
-
-# split_ratio = st.slider(label= "Split Ratio", min_value=0.01, max_value=0.99, value = split_ratio, step=0.01)
-
-
-# def preprocess():
-#     pass
-
-# if st.button("Generate Data"):
-
-#     file_features = "mnist_features.npy"
-#     file_target = "mnist_target.npy"
-#     if "features" not in st.session_state:
-#         features = np.load(file_features).astype(np.float32)
-#         st.session_state["features"] = features
-
-#     else:
-#         features = st.session_state["features"]
-    
-#     if "target" not in st.session_state:
-#         target = np.load(file_target).astype(np.int64)
-#         st.session_state["target"] = target
-
-#     else:
-#         target = st.session_state["target"]
-
-
-
-#     X_train, X_test, y_train, y_test = train_test_split(features, target, test_size = split_ratio, random_state=42)
-    
-#     if "X_train" not in st.session_state:
-#         st.session_state["X_train"] = X_train
-#         st.session_state["y_train"] = y_train
-#         st.session_state["X_test"] = X_test
-#         st.session_state["y_test"] = y_test
-
-#     else:
-#         X_train = st.session_state["X_train"]
-#         X_test = st.session_state["X_test"]
-#         y_train = st.session_state["y_train"]
-#         y_test = st.session_state["y_test"]
-
-#     st.write(X_train.shape, y_train.shape)
-#     st.write(X_test.shape, y_test.shape)
-    
