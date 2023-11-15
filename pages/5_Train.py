@@ -72,16 +72,16 @@ if st.button("TRAIN MODEL"):
         split_ratio = st.session_state["split_ratio"]
         totalLen = st.session_state["total_samples"]
 
-        Xsim,Xcus = features,features
+        Xsim,Xcus = st.session_state["features"],st.session_state["features"]
         if st.session_state["simpleModelType"] == "CNN":
-            Xsim = features.reshape(-1, 1, 28, 28)
+            Xsim = st.session_state["features"].reshape(-1, 1, 28, 28)
             print(Xsim.shape)
-            print(target.shape)
+            print(st.session_state["target"].shape)
 
         if st.session_state["customModelType"] == "CNN":
-            Xcus = features.reshape(-1, 1, 28, 28)
+            Xcus = st.session_state["features"].reshape(-1, 1, 28, 28)
             print(Xcus.shape)
-            print(target.shape)
+            print(st.session_state["target"].shape)
 
         Xsim_train, Xsim_test, y_train, y_test = train_test_split(Xsim[:totalLen], y[:totalLen], train_size = split_ratio/100, random_state=42)
         Xcus_train, Xcus_test, y_train, y_test = train_test_split(Xcus[:totalLen], y[:totalLen], train_size = split_ratio/100, random_state=42)
