@@ -16,22 +16,13 @@ st.markdown("---")
 
 st.write("Let create our custom model. We have two options, one to create an ANN and the other is a custom CNN")
 
-# looks like this is not required: can remove these 
-
-# if "samples" not in st.session_state:
-#     samples = 50
-# else:
-#     samples = st.session_state["samples"]
-
-# samples = st.slider(label = "NO. OF SAMPLES", min_value=10, max_value=100, value=20, step=10)
-
 
 st.header("Set the config of the models")
 
 with st.container():
-    st.subheader(" Set the config of ANN Model")
+    st.subheader("Set the config of ANN Model")
 
-    dropout = st.slider("Dropout", 0.,1.,value=0.5,step=0.1,key="dropout")
+    dropout = st.slider("dropout", 0.,1.,value=0.5,step=0.1,key="dropout")
 
     hiddenLayers = st.slider("No.of Hidden Layers", 1,5,step=1,value=1)
     st.write("Choose the number of nodes in each hidden layer: ")
