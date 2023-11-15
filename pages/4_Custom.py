@@ -36,8 +36,8 @@ st.header("Set the config of the models")
 #     if "hidden_layers" not in st.session_state:
 #         st.session_state["hidden_layers"] = sliderInputs
 with st.container():
-    st.write("set the config of ANN Model")
-    dropout = st.slider("dropout",0.,1.,value=0.5,step=0.1,key="dropout")
+    st.subheader("Set the Config of ANN Model")
+    dropout = st.slider("Dropout",0.,1.,value=0.5,step=0.1,key="dropout")
     hiddenLayers = st.slider("no.of hidden layers",1,5,step=1,value=1)
     st.write("below you can choose the number of nodes in each hidden layer: ")
     sliderInputs = [0 for i in range(hiddenLayers)]
