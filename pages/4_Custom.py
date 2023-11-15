@@ -17,7 +17,7 @@ st.markdown("---")
 st.write("Let create our custom model. We have two options, one to create an ANN and the other is a custom CNN")
 
 
-st.header("Set the config of the models")
+st.header("Configure your Model")
 
 # with st.container():
 #     st.subheader("Set the config of ANN Model")
@@ -36,7 +36,7 @@ st.header("Set the config of the models")
 #     if "hidden_layers" not in st.session_state:
 #         st.session_state["hidden_layers"] = sliderInputs
 with st.container():
-    st.subheader("Set the Config of ANN Model")
+    st.subheader("Configuration of ANN Model")
     dropout = st.slider("DROPOUT",0.,1.,value=0.5,step=0.1,key="dropout")
     hiddenLayers = st.slider("NO. OF HIDDEN LAYERS",1,5,step=1,value=1)
     st.write("BELOW YOU CAN CHOOSE THE NUMBER OF NODES IN EACH HIDDEN LAYER: ")
@@ -52,7 +52,7 @@ with st.container():
 
 
 with st.container():
-    st.subheader("Set the config for CNN Model")
+    st.subheader("Configuration for CNN Model")
     activation = st.radio("ACTIVATION FUNCTION",options=['ReLU','Tanh','Sigmoid'],index=0,key="activation")        
     layers = st.slider("NO. OF CONVOLUTION LAYERS",1,10,value=5,key="depth")
 
