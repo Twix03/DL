@@ -38,11 +38,11 @@ st.header("Set the config of the models")
 with st.container():
     st.subheader("Set the Config of ANN Model")
     dropout = st.slider("DROPOUT",0.,1.,value=0.5,step=0.1,key="dropout")
-    hiddenLayers = st.slider("NO.OF HIDDEN LAYERS",1,5,step=1,value=1)
+    hiddenLayers = st.slider("NO. OF HIDDEN LAYERS",1,5,step=1,value=1)
     st.write("BELOW YOU CAN CHOOSE THE NUMBER OF NODES IN EACH HIDDEN LAYER: ")
     sliderInputs = [0 for i in range(hiddenLayers)]
     for i in range(hiddenLayers):
-        sliderInputs[i] = st.slider("choose numer of nodes",100,500,step=50,value=100,key="h"+str(i))
+        sliderInputs[i] = st.slider("CHOOSE NO. OF NODES",100,500,step=50,value=100,key="h"+str(i))
     st.session_state["hidden_layers"] = sliderInputs
 
     if "dropout" not in st.session_state:
@@ -53,10 +53,9 @@ with st.container():
 
 with st.container():
     st.subheader("Set the config for CNN Model")
-    st.write("** Choose your function **")
-    activation = st.radio("Activation",options=['ReLU','Tanh','Sigmoid'],index=0,key="activation")        
-    st.write("**Choose the number of convolution layers in the model**")
-    layers = st.slider("no.of layers",1,10,value=5,key="depth")
+    activation = st.radio("ACTIVATION FUNCTION",options=['ReLU','Tanh','Sigmoid'],index=0,key="activation")        
+    st.write("CHOOSE NO. OF CONVOLUTION LAYERS IN THE MODEL")
+    layers = st.slider("NO. OF LAYERS",1,10,value=5,key="depth")
 
     if "activation" not in st.session_state:
         st.session_state["activation"] = activation
@@ -71,8 +70,8 @@ def customModels(modelType):
     else: return utility.CreateModelWithDepth(1,st.session_state["activation"],st.session_state["depth"])
 
 with st.container():
-    st.write("### create your model by changing config and then click on train model")
-    customSelection = st.radio("select model",options=["ANN","CNN"],index=0,key="customModelType",horizontal=True)
+    st.write("## create your model by changing config and then click on train model")
+    customSelection = st.radio("SELECT MODEL",options=["ANN","CNN"],index=0,key="customModelType",horizontal=True)
     if st.button("create Model"):
         customModel = customModels(customSelection)
         if "customModelType" not in st.session_state:
