@@ -83,8 +83,8 @@ if st.button("TRAIN MODEL"):
             print(Xcus.shape)
             print(st.session_state["target"].shape)
 
-        Xsim_train, Xsim_test, y_train, y_test = train_test_split(Xsim[:totalLen], y[:totalLen], train_size = split_ratio/100, random_state=42)
-        Xcus_train, Xcus_test, y_train, y_test = train_test_split(Xcus[:totalLen], y[:totalLen], train_size = split_ratio/100, random_state=42)
+        Xsim_train, Xsim_test, y_train, y_test = train_test_split(Xsim[:totalLen], st.session_state["target"][:totalLen], train_size = split_ratio/100, random_state=42)
+        Xcus_train, Xcus_test, y_train, y_test = train_test_split(Xcus[:totalLen], st.session_state["target"][:totalLen], train_size = split_ratio/100, random_state=42)
 
         assert(len(Xsim_train)+len(Xsim_test) == totalLen)
         device = 'cuda' if torch.cuda.is_available() else 'cpu'
